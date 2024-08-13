@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2>Đặt lại mật khẩu</h2>
+          <form [formGroup]="resetPasswordForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="password" class="form-label">Mật khẩu mới:</label>
+              <input type="password" class="form-control" id="password" formControlName="password">
+              <div *ngIf="resetPasswordForm.get('password')?.invalid && resetPasswordForm.get('password')?.touched" class="text-danger">
+                Mật khẩu phải có ít nhất 6 ký tự.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Xác nhận mật khẩu:</label>
+              <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+              <div *ngIf="resetPasswordForm.get('confirmPassword')?.invalid && resetPasswordForm.get('confirmPassword')?.touched" class="text-danger">
+                Vui lòng xác nhận mật khẩu của bạn.
+              </div>
+              <div *ngIf="resetPasswordForm.errors?.['mismatch'] && resetPasswordForm.get('confirmPassword')?.touched" class="text-danger">
+                Mật khẩu không khớp.
+              </div>
+            </div>
+            <div *ngIf="errorMessage" class="text-danger mb-3">
+              {{ errorMessage }}
+            </div>
+            <div *ngIf="successMessage" class="text-success mb-3">
+              {{ successMessage }}
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="resetPasswordForm.invalid">Đặt lại mật khẩu</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

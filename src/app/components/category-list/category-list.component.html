@@ -1,0 +1,63 @@
+<div class="row align-items-start justify-content-between">
+  <div class="col-12 col-md-12 col-lg-4 col-xl-4 text-center miliods">
+    <div class="d-block border rounded mfliud-bot">
+      <div class="dashboard_author px-2 py-5">
+        <div
+          class="dash_auth_thumb circle p-1 border d-inline-flex mx-auto mb-2"
+        >
+          <img
+            src="assets/img/sea.jpg"
+            class="img-fluid circle"
+            width="100"
+            alt=""
+          />
+        </div>
+        <div class="dash_caption">
+          <h4 class="fs-md ft-medium mb-0 lh-1">Quản trị viên</h4>
+          <span class="text-muted smalls">Việt nam</span>
+        </div>
+      </div>
+      <!--  -->
+    </div>
+  </div><!-- Đầu trang: Quản lý danh mục với Bootstrap và Angular -->
+<div class="container mt-4">
+  <!-- Nút để mở modal thêm danh mục -->
+  <button [routerLink]="['../category-add']" routerLinkActive="router-link-active"  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cateAddModal">
+      Thêm danh mục
+  </button>
+
+  <!-- Bảng hiển thị danh mục -->
+  <div class="container mt-4">
+      <table class="table">
+          <thead>
+              <tr>
+                  <th scope="col">ID danh mục</th>
+                  <th scope="col">Tên danh mục</th>
+                  <th scope="col">Hình ảnh</th>
+                  <th scope="col">Thao tác</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Nội dung bảng được cập nhật bằng Angular -->
+              <tr *ngFor="let cate of categories">
+                  <td>{{ cate.id }}</td>
+                  <td>{{ cate.name }}</td>
+
+                  <td>
+                    <img [src]="'assets/images/' + cate.img" alt="{{ cate.name }}" style="width: 50px; height: 50px;">
+                  </td>
+                  <td>
+                      <!-- Nút sửa danh mục -->
+                      <button [routerLink]="['../category-edit/' + cate.id]" routerLinkActive="router-link-active"  type="button" class="btn btn-sm btn-warning mr-3" data-bs-toggle="modal" data-bs-target="#cateEditModal">
+                          Sửa
+                      </button>
+                      <!-- Nút xóa danh mục -->
+                      <button type="button" class="btn btn-sm btn-danger" (click)="confirmDelete(cate.id)">
+                        Xóa
+                    </button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

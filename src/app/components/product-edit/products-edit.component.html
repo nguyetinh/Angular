@@ -1,0 +1,69 @@
+<div class="row align-items-start justify-content-between">
+  <div class="col-12 col-md-12 col-lg-4 col-xl-4 text-center miliods">
+    <div class="d-block border rounded mfliud-bot">
+      <div class="dashboard_author px-2 py-5">
+        <div class="dash_auth_thumb circle p-1 border d-inline-flex mx-auto mb-2">
+          <img src="assets/img/team-1.jpg" class="img-fluid circle" width="100" alt="" />
+        </div>
+        <div class="dash_caption">
+          <h4 class="fs-md ft-medium mb-0 lh-1">Quản trị viên</h4>
+          <span class="text-muted smalls">Việt nam</span>
+        </div>
+      </div>
+      <!--  -->
+    </div>
+  </div>
+  <div class="col-12 col-md-12 col-lg-8 col-xl-8">
+    <form (ngSubmit)="onSubmit()" [formGroup]="productForm">
+      <div class="card">
+        <div class="card-header">Add new product</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="name">Tên sản phẩm</label>
+            <input type="text" name="name" id="name" formControlName="name" [(ngModel)]="product.name"
+              class="form-control" placeholder="" aria-describedby="namehelpId" />
+            <small *ngIf="
+                !productForm.get('name')?.valid &&
+                productForm.get('name')?.touched
+              " id="namehelpId" class="text-muted">Tên sản phẩm là bắt buộc</small>
+          </div>
+          <div class="form-group">
+            <label for="category">Danh mục</label>
+            <select name="category" id="category" formControlName="category" [(ngModel)]="product.category">
+              <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="price">Giá</label>
+            <input type="text" name="price" id="price" type="number" formControlName="price" [(ngModel)]="product.price"
+              class="form-control" placeholder="" aria-describedby="priceHelpId" />
+            <small *ngIf="
+                !productForm.get('price')?.valid &&
+                productForm.get('price')?.touched
+              " id="priceHelpId" class="text-muted">Giá là bắt buộc</small>
+          </div>
+          <div class="form-group">
+            <label for="description">Mô tả</label>
+            <textarea name="description" id="description" formControlName="description" [(ngModel)]="product.description" class="form-control"
+              placeholder="" aria-describedby="descriptionHelpId"></textarea>
+            <small *ngIf="
+                !productForm.get('description')?.valid &&
+                productForm.get('description')?.touched
+              " id="descriptionHelpId" class="text-muted">Mô tả là bắt buộc</small>
+          </div>
+          <div class="form-group">
+            <label for="img">Chọn Hình Ảnh</label>
+            <input type="file" name="img" id="img" (change)="onFileSelected($event)" class="form-control" placeholder="" aria-describedby="imageHelpId">
+            <small *ngIf="!imageValid && imageTouched" id="imageHelpId" class="text-muted">
+              Hình Ảnh Là Bắt Buộc!
+            </small>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Edit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<p class="pt-3 pb-3">{{ product | json }}</p>

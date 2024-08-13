@@ -1,0 +1,61 @@
+<div class="row align-items-start justify-content-between">
+  <div class="col-12 col-md-12 col-lg-4 col-xl-4 text-center miliods">
+    <div class="d-block border rounded mfliud-bot">
+      <div class="dashboard_author px-2 py-5">
+        <div
+          class="dash_auth_thumb circle p-1 border d-inline-flex mx-auto mb-2"
+        >
+          <img
+            src="assets/img/team-1.jpg"
+            class="img-fluid circle"
+            width="100"
+            alt=""
+          />
+        </div>
+        <div class="dash_caption">
+          <h4 class="fs-md ft-medium mb-0 lh-1">Quản trị viên</h4>
+          <span class="text-muted smalls">Việt nam</span>
+        </div>
+      </div>
+      <!--  -->
+    </div>
+  </div>
+  <div class="col-12 col-md-12 col-lg-8 col-xl-8">
+    <!--
+      [formGroup]="categoryForm" trong Angular là một cú pháp để liên kết một đối tượng FormGroup từ TypeScript
+      với một biểu mẫu trong template HTML. [formGroup]="categoryForm" sẽ liên kết FormGroup này với biểu mẫu trong template HTML của bạn.
+      Điều này giúp tự động đồng bộ hóa dữ liệu giữa biểu mẫu và đối tượng FormGroup trong TypeScript.
+      Trong trường này categoryForm là một đối tượng FormGroup được khai báo và khởi tạo trong TypeScript, có thể được sử dụng để quản lý các trường và trạng thái của biểu mẫu.
+      Ex: import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+    -->
+    <form (ngSubmit)="onSubmit()" [formGroup]="categoryForm">
+      <div class="card">
+        <div class="card-header">
+          Add new category
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name"
+            formControlName="name"
+            [(ngModel)]="category.name" class="form-control" placeholder="" aria-describedby="nameHelpId">
+
+            <small *ngIf="!categoryForm.get('name')?.valid && categoryForm.get('name')?.touched" id="nameHelpId" class="text-muted">
+              Category name is required and and at least 6 characters
+            </small>
+          </div>
+          <div class="form-group">
+            <label for="img">Chọn Hình Ảnh</label>
+            <input type="file" name="img" id="img" (change)="onFileSelected($event)" class="form-control" placeholder="" aria-describedby="imageHelpId">
+            <small *ngIf="!imageValid && imageTouched" id="imageHelpId" class="text-muted">
+              Hình Ảnh Là Bắt Buộc!
+            </small>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Add</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

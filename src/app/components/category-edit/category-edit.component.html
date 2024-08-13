@@ -1,0 +1,67 @@
+<div class="row align-items-start justify-content-between">
+  <div class="col-12 col-md-12 col-lg-4 col-xl-4 text-center miliods">
+    <div class="d-block border rounded mfliud-bot">
+      <div class="dashboard_author px-2 py-5">
+        <div
+          class="dash_auth_thumb circle p-1 border d-inline-flex mx-auto mb-2"
+        >
+          <img
+            src="assets/img/sea.jpg"
+            class="img-fluid circle"
+            width="100"
+            alt=""
+          />
+        </div>
+        <div class="dash_caption">
+          <h4 class="fs-md ft-medium mb-0 lh-1">Quản Trị Viên</h4>
+          <span class="text-muted smalls">Việt nam</span>
+        </div>
+      </div>
+      <!--  -->
+    </div>
+  </div>
+  <div class="col-12 col-md-12 col-lg-8 col-xl-8">
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="categoryForm">
+      <div class="card">
+        <div class="card-header">
+          Sửa Danh Mục
+        </div>
+        <div class="card-body">
+
+          <div class="form-group">
+            <label for="name">ID Danh Mục</label>
+            <input type="text" name="id" id="id"
+            formControlName="id"
+            [(ngModel)]="category.id" class="form-control" placeholder="" aria-describedby="nameHelpId">
+
+            <small *ngIf="!categoryForm.get('id')?.valid && categoryForm.get('id')?.touched" id="nameHelpId" class="text-muted">
+              Tên Danh Mục Là Bắt Buộc!
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Tên Danh Mục</label>
+            <input type="text" name="name" id="name" formControlName="name"
+            [(ngModel)]="category.name" class="form-control" placeholder="" aria-describedby="nameHelpId">
+
+            <small *ngIf="!categoryForm.get('name')?.valid && categoryForm.get('name')?.touched" id="nameHelpId" class="text-muted">
+              Tên Danh Mục Là Bắt Buộc!
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label for="img">Chọn Hình Ảnh Mới (Nếu có)</label>
+            <input type="file" name="img" id="img" (change)="onFileSelected($event)" class="form-control">
+            <small *ngIf="!imageValid && imageTouched" class="text-danger">
+              Hình Ảnh là bắt buộc!
+            </small>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Sửa</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
